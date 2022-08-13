@@ -1,2 +1,26 @@
 ---
-# tasks file for rpi_serials
+
+# ensure mounted boot
+- name: mount boot
+  ansible.posix.mount:
+    path: /boot
+    state: mounted
+    src: /dev/mmcblk0p1
+    fstype: vfat
+  changed_when: False
+
+- name: setting MPG2 serial
+  ansible.builtin.lineinfile:
+    path: /boot/config.txt
+    regexp: '^decode_MPG2='
+    line: "decode_MPG2={{ rpi_serials.MPG2 }}"
+  when: rpi_serials.MPG2 is defined
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: setting WVC1 serial
+  ansible.builtin.lineinfile:
+    path: /boot/config.txt
+    regexp: '^decode_WVC1='
+    line: "decode_WVC1={{ rpi_serials.WVC1 }}"
+  when: rpi_serials.WVC1 is defined
+  ignore_errors: "{{ ansible_check_mode }}"
