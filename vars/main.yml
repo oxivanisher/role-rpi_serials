@@ -1,2 +1,3 @@
 ---
 # vars file for rpi_serials
+rpi_serials_config_dir: /boot/firmware

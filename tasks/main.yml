@@ -1,8 +1,13 @@
 ---
 # ensure mounted boot
+- name: Override config.txt location for Raspberry Pi OS version before bookworm
+  ansible.builtin.set_fact:
+    rpi_serials_config_dir: /boot
+  when: ansible_distribution_major_version | int < 12
+
 - name: Mount boot
   ansible.posix.mount:
-    path: /boot
+    path: "{{ rpi_serials_config_dir }}"
     state: mounted
     src: /dev/mmcblk0p1
     fstype: vfat
@@ -10,7 +15,7 @@
 
 - name: Setting MPG2 serial
   ansible.builtin.lineinfile:
-    path: /boot/config.txt
+    path: "{{ rpi_serials_config_dir }}/config.txt"
     regexp: "^decode_MPG2="
     line: "decode_MPG2={{ rpi_serials.MPG2 }}"
   when: rpi_serials.MPG2 is defined
@@ -18,7 +23,7 @@
 
 - name: Setting WVC1 serial
   ansible.builtin.lineinfile:
-    path: /boot/config.txt
+    path: "{{ rpi_serials_config_dir }}/config.txt"
     regexp: "^decode_WVC1="
     line: "decode_WVC1={{ rpi_serials.WVC1 }}"
   when: rpi_serials.WVC1 is defined
