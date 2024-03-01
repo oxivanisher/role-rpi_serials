@@ -1,2 +1,3 @@
 ---
 rpi_serials:
+raspberry_pi_boot_dev: /dev/mmcblk0p1
