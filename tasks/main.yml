@@ -12,6 +12,8 @@
     src: "{{ raspberry_pi_boot_dev }}"
     fstype: vfat
   changed_when: false
+  become: true
+  become_user: root
 
 - name: Setting MPG2 serial
   ansible.builtin.lineinfile:
@@ -20,6 +22,8 @@
     line: "decode_MPG2={{ rpi_serials.MPG2 }}"
   when: rpi_serials.MPG2 is defined
   ignore_errors: "{{ ansible_check_mode }}"
+  become: true
+  become_user: root
 
 - name: Setting WVC1 serial
   ansible.builtin.lineinfile:
@@ -28,3 +32,5 @@
     line: "decode_WVC1={{ rpi_serials.WVC1 }}"
   when: rpi_serials.WVC1 is defined
   ignore_errors: "{{ ansible_check_mode }}"
+  become: true
+  become_user: root
