@@ -1,3 +1,4 @@
 ---
-rpi_serials:
-raspberry_pi_boot_dev: /dev/mmcblk0p1
+rpi_serials_mpg2:
+rpi_serials_wvc1:
+rpi_serials_rpi_boot_dev: /dev/mmcblk0p1

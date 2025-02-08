@@ -1,31 +1,31 @@
-Role Name
-=========
+rpi_serials
+===========
 
-A brief description of the role goes here.
+Configure serial numbers for MPG2 and WVC1.
 
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+As always: Use at your own risk!
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Name                     | Comment                                   | Default value |
+|--------------------------|-------------------------------------------|---------------|
+| rpi_serials_mpg2         | The MPG2 serial number | ``       |
+| rpi_serials_wvc1         | The WVC1 serial number | ``       |
+| rpi_serials_rpi_boot_dev | The boot device where the `config.txt` is located. Will be overwritten if `raspberry_pi_boot_dev` is set! | `/dev/mmcblk0p1` |
 
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- name: Configure multimedia serials
+  hosts: rpis
+  collections:
+    - oxivanisher.raspberry_pi
+  roles:
+    - role: oxivanisher.raspberry_pi.rpi_serials
+```
 
 License
 -------
@@ -35,4 +35,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role is part of the [oxivanisher.raspberry_pi](https://galaxy.ansible.com/ui/repo/published/oxivanisher/raspberry_pi/) collection, and the source for that is located on [github](https://github.com/oxivanisher/collection-raspberry_pi).
