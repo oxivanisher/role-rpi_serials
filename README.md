@@ -1,5 +1,6 @@
 rpi_serials
 ===========
+[![Ansible Lint](https://github.com/oxivanisher/role-rpi_serials/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/oxivanisher/role-rpi_serials/actions/workflows/ansible-lint.yml)
 
 Configure serial numbers for MPG2 and WVC1.
 
